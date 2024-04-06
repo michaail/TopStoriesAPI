@@ -2,13 +2,13 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace TopStories.Services.CacheService;
 
-public class StoriesIdentifiersCache
+public class CacheService
 {
     private readonly IMemoryCache _cache;
     private readonly TimeSpan _cacheExpiration = TimeSpan.FromMinutes(30); // Cache expiration time
 
 
-    public StoriesIdentifiersCache(IMemoryCache cache)
+    public CacheService(IMemoryCache cache)
     {
         _cache = cache;
     }
@@ -20,7 +20,7 @@ public class StoriesIdentifiersCache
             result = valueFactory();
             _cache.Set(key, result, _cacheExpiration);
         }
-        return result;
+        return result!;
     }
 
 }

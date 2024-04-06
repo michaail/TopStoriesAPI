@@ -1,4 +1,5 @@
-using System.Net.Http.Json;
+using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using TopStories.Common.Models;
 using TopStories.Services.HackerNews;
 
@@ -6,19 +7,36 @@ namespace TopStories.Services.HackerNewsService;
 
 public class HackerNewsAPIService : IApiService
 {
+    private readonly ILogger<HackerNewsAPIService> _logger;
+    private readonly  HttpClient _client;
+
+    public HackerNewsAPIService(ILogger<HackerNewsAPIService> logger, HttpClient client)
+    {
+        _logger = logger;
+        _client = client;
+    }
+
     public async Task<Story> GetStory(int id)
     {
-        HttpClient client = new();
-        var story = await client.GetFromJsonAsync<Story>($"https://hacker-news.firebaseio.com/v0/item/{id}.json");
-        
-        return story!;
+        var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/item/{id}.json");
+
+        if(response.IsSuccessStatusCode)
+        {
+            return JsonSerializer.Deserialize<Story>(await response.Content.ReadAsStringAsync())!;
+        }
+
+        throw new Exception();
     }
 
     public async Task<IEnumerable<int>> GetTopStoriesIds()
     {
-        HttpClient client = new();
-        var topStoriesIds = await client.GetFromJsonAsync<IEnumerable<int>>("https://hacker-news.firebaseio.com/v0/beststories.json");
-        // Make sure it is returned or retry mechanism to be added
-        return topStoriesIds ?? [] ;
+        var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/beststories.json");
+
+        if(response.IsSuccessStatusCode)
+        {
+            return JsonSerializer.Deserialize<IEnumerable<int>>(await response.Content.ReadAsStringAsync())!;
+        }
+        
+        throw new Exception();
     }
 }

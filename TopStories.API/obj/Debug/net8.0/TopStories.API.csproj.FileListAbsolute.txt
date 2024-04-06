@@ -32,3 +32,5 @@
 /Users/michalklos/Projects/TopStories/TopStories.API/obj/Debug/net8.0/ref/TopStories.API.dll
 /Users/michalklos/Projects/TopStories/TopStories.API/bin/Debug/net8.0/TopStories.Common.dll
 /Users/michalklos/Projects/TopStories/TopStories.API/bin/Debug/net8.0/TopStories.Common.pdb
+/Users/michalklos/Projects/TopStories/TopStories.API/bin/Debug/net8.0/TopStories.Services.dll
+/Users/michalklos/Projects/TopStories/TopStories.API/bin/Debug/net8.0/TopStories.Services.pdb

@@ -9,5 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TopStories.Common\TopStories.Common.csproj" />
+    <ProjectReference Include="..\TopStories.Services\TopStories.Services.csproj" />
   </ItemGroup>
 </Project>
