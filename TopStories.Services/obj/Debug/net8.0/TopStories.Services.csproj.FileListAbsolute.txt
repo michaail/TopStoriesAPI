@@ -1,0 +1,15 @@
+/Users/michalklos/Projects/TopStories/TopStories.Services/bin/Debug/net8.0/TopStories.Services.deps.json
+/Users/michalklos/Projects/TopStories/TopStories.Services/bin/Debug/net8.0/TopStories.Services.dll
+/Users/michalklos/Projects/TopStories/TopStories.Services/bin/Debug/net8.0/TopStories.Services.pdb
+/Users/michalklos/Projects/TopStories/TopStories.Services/bin/Debug/net8.0/TopStories.Common.dll
+/Users/michalklos/Projects/TopStories/TopStories.Services/bin/Debug/net8.0/TopStories.Common.pdb
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/TopStories.Services.csproj.AssemblyReference.cache
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/TopStories.Services.GeneratedMSBuildEditorConfig.editorconfig
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/TopStories.Services.AssemblyInfoInputs.cache
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/TopStories.Services.AssemblyInfo.cs
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/TopStories.Services.csproj.CoreCompileInputs.cache
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/TopStori.4E40B24B.Up2Date
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/TopStories.Services.dll
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/refint/TopStories.Services.dll
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/TopStories.Services.pdb
+/Users/michalklos/Projects/TopStories/TopStories.Services/obj/Debug/net8.0/ref/TopStories.Services.dll

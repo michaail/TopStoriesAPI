@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "6lAzr5a0vo+Ag6TCLZWUw5nPJVx+y7mo2tZxg4j9MYAJhEMDlPFMuFAh9b3PTlhElwYJyF/JE3YRORVew6YXsQ==",
+  "success": true,
+  "projectFilePath": "/Users/michalklos/Projects/TopStories/TopStories.Services/TopStories.Services.csproj",
+  "expectedPackageFiles": [
+    "/Users/michalklos/.nuget/packages/microsoft.extensions.caching.abstractions/8.0.0/microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
+    "/Users/michalklos/.nuget/packages/microsoft.extensions.caching.memory/8.0.0/microsoft.extensions.caching.memory.8.0.0.nupkg.sha512",
+    "/Users/michalklos/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/Users/michalklos/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "/Users/michalklos/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "/Users/michalklos/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

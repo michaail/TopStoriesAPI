@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/TopStories.API.props" />
+</Project>
