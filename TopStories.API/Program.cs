@@ -14,8 +14,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<HttpClient>();
 builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
-builder.Services.AddSingleton<CacheService>();
-builder.Services.AddSingleton<IApiService, HackerNewsAPIService>();
+builder.Services.AddScoped<ICacheService, CacheService>();
+builder.Services.AddScoped<IApiService, HackerNewsAPIService>();
+builder.Services.AddScoped<HackerNewsTopStoriesService>();
 
 
 var app = builder.Build();

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TopStories.Common")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0cbcd51f6e9c3ef53546bea793a15b61f17f645e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e1ba7f09c19661facf51afa0ae1391bc4833dd6")]
 [assembly: System.Reflection.AssemblyProductAttribute("TopStories.Common")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TopStories.Common")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
