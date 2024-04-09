@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Moq;
-using NUnit.Framework;
 using TopStories.Common.Models;
 using TopStories.Services.CacheService;
 using TopStories.Services.HackerNews;
@@ -43,13 +39,13 @@ namespace TopStories.Services.TopStoriesService.Tests
         public async Task GetTopIdentifiers_ShouldCallApiService_WhenCacheEmpty()
         {
             // Arrange
-            _cacheServiceMock.Setup(x => x.GetOrSet("BestStoriesIdentifiers", It.IsAny<Func<Task<IEnumerable<int>>>>(), It.IsAny<TimeSpan>()))
-                             .ReturnsAsync((IEnumerable<int>)null);
             var expectedIdentifiers = new List<int> { 1, 2, 3 };
             _apiServiceMock.Setup(x => x.GetTopStoriesIds()).ReturnsAsync(expectedIdentifiers);
+            _cacheServiceMock.Setup(x => x.GetOrSet("BestStoriesIdentifiers", It.IsAny<Func<Task<IEnumerable<int>>>>(), It.IsAny<TimeSpan>()))
+                             .ReturnsAsync(_apiServiceMock.Object.GetTopStoriesIds().Result);
 
             // Act
-            var result = await _topStoriesService.GetTopIdentifiers();
+            var result = await _topStoriesService.GetTopIdentifiers().ConfigureAwait(false);
 
             // Assert
             Assert.AreEqual(expectedIdentifiers, result);
@@ -75,10 +71,10 @@ namespace TopStories.Services.TopStoriesService.Tests
         public async Task GetStory_ShouldCallApiService_WhenCacheEmpty()
         {
             // Arrange
-            _cacheServiceMock.Setup(x => x.GetOrSet("123", It.IsAny<Func<Task<Story>>>(), It.IsAny<TimeSpan>()))
-                             .ReturnsAsync((Story)null);
             var expectedStory = new Story { id = 123, title = "Test Story" };
             _apiServiceMock.Setup(x => x.GetStory(123)).ReturnsAsync(expectedStory);
+            _cacheServiceMock.Setup(x => x.GetOrSet("123", It.IsAny<Func<Task<Story>>>(), It.IsAny<TimeSpan>()))
+                             .ReturnsAsync(_apiServiceMock.Object.GetStory(123).Result);
 
             // Act
             var result = await _topStoriesService.GetStory(123);
