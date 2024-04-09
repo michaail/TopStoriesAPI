@@ -1,21 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Moq.Protected;
-using NUnit.Framework;
+using System.Net;
+using System.Text.Json;
 using TopStories.Common.Models;
 using TopStories.Services.HackerNewsService;
 
 namespace TopStories.Tests
 {
-    [Ignore("Bq")]
     [TestFixture]
     public class HackerNewsAPIServiceTests
     {

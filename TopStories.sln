@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopStories.Services", "TopS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopStories.Services.Tests", "TopStories.Services.Tests\TopStories.Services.Tests.csproj", "{17307DAA-BF84-4270-A1B8-E531759EC5BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopStories.API.Tests", "TopStories.API.Tests\TopStories.API.Tests.csproj", "{F9A41CD2-CB38-458A-B512-937E38C1580D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2D4212E4-66EC-456E-81BB-9ABB59ECF1D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +37,17 @@ Global
 		{17307DAA-BF84-4270-A1B8-E531759EC5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17307DAA-BF84-4270-A1B8-E531759EC5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17307DAA-BF84-4270-A1B8-E531759EC5BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A41CD2-CB38-458A-B512-937E38C1580D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A41CD2-CB38-458A-B512-937E38C1580D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A41CD2-CB38-458A-B512-937E38C1580D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A41CD2-CB38-458A-B512-937E38C1580D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{17307DAA-BF84-4270-A1B8-E531759EC5BD} = {2D4212E4-66EC-456E-81BB-9ABB59ECF1D3}
+		{F9A41CD2-CB38-458A-B512-937E38C1580D} = {2D4212E4-66EC-456E-81BB-9ABB59ECF1D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {733C2AE8-065B-4C59-84BC-D1C3BBC95101}
