@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TopStories.Common.Models;
-using TopStories.Services.HackerNews;
+using TopStories.Services.TopStoriesService;
 
 namespace TopStories.API.Controllers;
 
@@ -9,9 +9,9 @@ namespace TopStories.API.Controllers;
 public class StoriesController : ControllerBase
 {
     private readonly ILogger<StoriesController> _logger;
-    private readonly HackerNewsTopStoriesService _topStoriesService;
+    private readonly ITopStoriesService _topStoriesService;
 
-    public StoriesController(ILogger<StoriesController> logger, HackerNewsTopStoriesService topStoriesService)
+    public StoriesController(ILogger<StoriesController> logger, ITopStoriesService topStoriesService)
     {
         _logger = logger;
         _topStoriesService = topStoriesService;
@@ -20,18 +20,20 @@ public class StoriesController : ControllerBase
     [HttpGet(Name = "TopStories")]
     public async Task<IEnumerable<Story>> Get(int numberOfStories)
     {
-        // var identifiers = _cacheService.GetOrSet<IEnumerable<int>>("BestStoriesIdentifiers", () => _hackerNewsService.GetTopStoriesIds().Result);
+        _logger.LogInformation($"Received request for: {numberOfStories} most recent stories");
         var identifiers = await _topStoriesService.GetTopIdentifiers();
         if(identifiers != null)
         {
+            var tasks = new List<Task<Story>>();
             var ids = identifiers.ToList();
-            var stories = new List<Story>();
+
             for(int i = 0; i < numberOfStories; i++)
             {
-                stories.Add(await _topStoriesService.GetStory(ids[i]));
+                tasks.Add(_topStoriesService.GetStory(ids[i]));
             }
 
-            return stories;
+            return await Task.WhenAll<Story>(tasks);
+
         }
 
         throw new Exception();

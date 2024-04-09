@@ -1,20 +1,17 @@
-using Microsoft.Extensions.Logging;
 using TopStories.Common.Models;
 using TopStories.Services.CacheService;
+using TopStories.Services.HackerNews;
 
-namespace TopStories.Services.HackerNews;
+namespace TopStories.Services.TopStoriesService;
 
-public class HackerNewsTopStoriesService
+public class HackerNewsTopStoriesService : ITopStoriesService
 {
-    private readonly ILogger<HackerNewsTopStoriesService> _logger;
     private readonly ICacheService _cacheService;
     private readonly IApiService _apiService;
     public HackerNewsTopStoriesService(
-        ILogger<HackerNewsTopStoriesService> logger,
         ICacheService cacheService,
         IApiService apiService)
     {
-        _logger = logger;
         _cacheService = cacheService;
         _apiService = apiService;
     }

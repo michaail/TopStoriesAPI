@@ -3,6 +3,8 @@
     <ProjectReference Include="..\TopStories.Common\TopStories.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="LazyCache" Version="2.4.0" />
+    <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
   </ItemGroup>
   <PropertyGroup>

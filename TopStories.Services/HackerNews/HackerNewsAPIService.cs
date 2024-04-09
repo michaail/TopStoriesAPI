@@ -18,6 +18,7 @@ public class HackerNewsAPIService : IApiService
 
     public async Task<Story> GetStory(int id)
     {
+        _logger.LogInformation($"[HackerNewsAPI] - GET /item id: {id}");
         var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/item/{id}.json");
 
         if(response.IsSuccessStatusCode)
@@ -30,6 +31,7 @@ public class HackerNewsAPIService : IApiService
 
     public async Task<IEnumerable<int>> GetTopStoriesIds()
     {
+        _logger.LogInformation("[HackerNewsAPI] - GET /beststories");
         var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/beststories.json");
 
         if(response.IsSuccessStatusCode)
