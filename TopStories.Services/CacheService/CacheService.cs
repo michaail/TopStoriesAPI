@@ -14,11 +14,13 @@ public class CacheService : ICacheService
         _cache = cache;
     }
 
-    public async Task<T> GetOrSet<T>(string key, Func<Task<T>> valueFactory)
+    public async Task<T> GetOrSet<T>(string key, Func<Task<T>> valueFactory, TimeSpan expirationSpan)
     {
         var res = await _cache.GetOrAddAsync<T>(key, async cacheEntry => 
         {
             _logger.LogInformation($"[CacheService] - Entry with key: {cacheEntry.Key} does not exist in cache");
+            cacheEntry.AbsoluteExpirationRelativeToNow = expirationSpan.Multiply(3);
+            cacheEntry.SlidingExpiration = expirationSpan;
             return await valueFactory();
         } );
         return res!;
