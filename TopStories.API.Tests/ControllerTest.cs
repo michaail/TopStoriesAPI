@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TopStories.API.Controllers;
-using TopStories.API;
-using TopStories.Common;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using NUnit.Framework;
 using TopStories.Common.Models;
 using TopStories.Services.TopStoriesService;
 
