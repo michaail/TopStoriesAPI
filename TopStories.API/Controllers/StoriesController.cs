@@ -18,13 +18,14 @@ public class StoriesController : ControllerBase
     }
 
     [HttpGet(Name = "TopStories")]
-    public async Task<IEnumerable<Story>> Get(int numberOfStories)
+    [Produces(typeof(IEnumerable<Story>))]
+    public async Task<IActionResult> Get(int numberOfStories)
     {
         _logger.LogInformation($"[StoriesController] - Received request for: {numberOfStories} most recent stories");
         DateTime start = DateTime.Now;
-        var identifiers = await _topStoriesService.GetTopIdentifiers();
-        if (identifiers != null)
+        try
         {
+            var identifiers = await _topStoriesService.GetTopIdentifiers();
             var tasks = new List<Task<Story>>();
             var ids = identifiers.ToList();
 
@@ -35,11 +36,12 @@ public class StoriesController : ControllerBase
 
             var result = await Task.WhenAll(tasks);
             var duration = TimeSpan.FromTicks(DateTime.Now.Ticks - start.Ticks);
-            _logger.LogInformation($"[StoriesController] - Returned {result.Count()} in {(duration.Milliseconds == 0 ? $"{duration.TotalMicroseconds}us" : $"{ duration.Milliseconds}ms")}");
-            return await Task.WhenAll<Story>(tasks);
-
+            _logger.LogInformation($"[StoriesController] - Returned {result.Count()} in {(duration.Milliseconds == 0 ? $"{duration.TotalMicroseconds}us" : $"{duration.Milliseconds}ms")}");
+            return Ok(await Task.WhenAll<Story>(tasks));
         }
-
-        throw new Exception();
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
     }
 }

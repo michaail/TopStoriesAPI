@@ -12,33 +12,39 @@ public class HackerNewsAPIService : IApiService
 
     public HackerNewsAPIService(ILogger<HackerNewsAPIService> logger, HttpClient client)
     {
-        _logger = logger;
-        _client = client;
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _client = client ?? throw new ArgumentNullException(nameof(client));
     }
 
     public async Task<Story> GetStory(int id)
     {
         _logger.LogInformation($"[HackerNewsAPI] - GET /item id: {id}");
-        var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/item/{id}.json");
-
-        if(response.IsSuccessStatusCode)
+        try
         {
+            var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/item/{id}.json");
+            response.EnsureSuccessStatusCode();
             return JsonSerializer.Deserialize<Story>(await response.Content.ReadAsStringAsync())!;
+        } 
+        catch (Exception ex) 
+        {
+            _logger.LogError(ex, ex.Message);
+            throw;
         }
-
-        throw new Exception();
     }
 
     public async Task<IEnumerable<int>> GetTopStoriesIds()
     {
         _logger.LogInformation("[HackerNewsAPI] - GET /beststories");
-        var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/beststories.json");
-
-        if(response.IsSuccessStatusCode)
+        try
         {
+            var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/beststories.json");
+            response.EnsureSuccessStatusCode();
             return JsonSerializer.Deserialize<IEnumerable<int>>(await response.Content.ReadAsStringAsync())!;
+        } 
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+            throw;
         }
-        
-        throw new Exception();
     }
 }

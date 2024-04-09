@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopStories.Common", "TopSto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopStories.Services", "TopStories.Services\TopStories.Services.csproj", "{DA9A6C04-06E1-4181-B3B8-DBF03B9086AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopStories.Services.Tests", "TopStories.Services.Tests\TopStories.Services.Tests.csproj", "{17307DAA-BF84-4270-A1B8-E531759EC5BD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{DA9A6C04-06E1-4181-B3B8-DBF03B9086AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA9A6C04-06E1-4181-B3B8-DBF03B9086AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA9A6C04-06E1-4181-B3B8-DBF03B9086AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17307DAA-BF84-4270-A1B8-E531759EC5BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17307DAA-BF84-4270-A1B8-E531759EC5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17307DAA-BF84-4270-A1B8-E531759EC5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17307DAA-BF84-4270-A1B8-E531759EC5BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
