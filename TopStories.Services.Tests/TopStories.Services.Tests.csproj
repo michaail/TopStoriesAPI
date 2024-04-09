@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TopStories.Services\TopStories.Services.csproj" />
+    <ProjectReference Include="..\TopStories.Common\TopStories.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="NUnit.Framework" />
