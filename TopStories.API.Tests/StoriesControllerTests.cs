@@ -39,11 +39,14 @@ namespace TopStories.API.Controllers.Tests
             var result = await _controller.Get(numberOfStories) as OkObjectResult;
 
             // Assert
-            Assert.NotNull(result);
-            Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status200OK));
-            Assert.IsInstanceOf<IEnumerable<Story>>(result.Value);
+            Assert.That(result, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status200OK));
+                Assert.That(result.Value, Is.InstanceOf<IEnumerable<Story>>());
+            });
             var returnedStories = result.Value as IEnumerable<Story>;
-            Assert.IsNotNull(returnedStories);
+            Assert.That(returnedStories, Is.Not.Null);
             Assert.That(returnedStories.Count(), Is.EqualTo(numberOfStories));
             CollectionAssert.AreEqual(stories, returnedStories);
         }
@@ -59,7 +62,7 @@ namespace TopStories.API.Controllers.Tests
             var result = await _controller.Get(numberOfStories) as ObjectResult;
 
             // Assert
-            Assert.NotNull(result);
+            Assert.That(result, Is.Not.Null);
             Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status500InternalServerError));
         }
     }

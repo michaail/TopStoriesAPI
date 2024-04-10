@@ -29,7 +29,7 @@ public class HackerNewsAPIService : IApiService
     /// <returns>Retrieved story in a ready format</returns>
     public async Task<Story> GetStory(int id)
     {
-        _logger.LogInformation($"[HackerNewsAPI] - GET /item id: {id}");
+        _logger.LogInformation("GET /item id: {id}", id);
         try
         {
             var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/item/{id}.json");
@@ -49,7 +49,7 @@ public class HackerNewsAPIService : IApiService
     /// <returns>Collection of 200 identifiers for best stories</returns>
     public async Task<IEnumerable<int>> GetTopStoriesIds()
     {
-        _logger.LogInformation("[HackerNewsAPI] - GET /beststories");
+        _logger.LogInformation("GET /beststories");
         try
         {
             var response = await _client.GetAsync($"https://hacker-news.firebaseio.com/v0/beststories.json");

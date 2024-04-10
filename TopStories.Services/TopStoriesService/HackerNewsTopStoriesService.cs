@@ -5,21 +5,16 @@ using TopStories.Services.HackerNews;
 
 namespace TopStories.Services.TopStoriesService;
 
-public class HackerNewsTopStoriesService : ITopStoriesService
+public class HackerNewsTopStoriesService(
+    ICacheService cacheService,
+    IApiService apiService) : ITopStoriesService
 {
     // It's slidingExpiration time - AbsoluteExpirationRelativeToNow is set to 3x slidingExpiration value
     private readonly TimeSpan identifiersExpirationSpan = TimeSpan.FromMinutes(Constants.IdentifiersCacheExpirationInMinutes);
     private readonly TimeSpan storyExpirationSpan = TimeSpan.FromMinutes(Constants.StoryCacheExpirationInMinutes);
 
-    private readonly ICacheService _cacheService;
-    private readonly IApiService _apiService;
-    public HackerNewsTopStoriesService(
-        ICacheService cacheService,
-        IApiService apiService)
-    {
-        _cacheService = cacheService;
-        _apiService = apiService;
-    }
+    private readonly ICacheService _cacheService = cacheService;
+    private readonly IApiService _apiService = apiService;
 
     /// <summary>
     /// Cached service for Best stories identifiers using LazyCache

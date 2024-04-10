@@ -1,16 +1,25 @@
+using NLog;
+using NLog.Web;
 using TopStories.Common.Helpers;
 using TopStories.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+
+logger.Info("TopStories - Start");
+
+builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+builder.Host.UseNLog();
 
 // Add services to the container.
-
+builder.Services.AddLogging(bldr =>
+{
+    bldr.AddConfiguration(builder.Configuration.GetSection("Logging"));
+    bldr.AddSimpleConsole();
+});
 builder.Services.AddSingleton<StoryConverter>();
 
-builder.Services.AddControllers().AddJsonOptions(options =>
-    {
-        //options.JsonSerializerOptions.Converters.Add(new StoryConverter());
-    });
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

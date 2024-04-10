@@ -51,9 +51,12 @@ namespace TopStories.Tests
             // Act
             var result = await _hackerNewsApiService.GetStory(storyId);
 
-            // Assert
-            Assert.That(result.id, Is.EqualTo(expectedStory.id));
-            Assert.That(result.title, Is.EqualTo(expectedStory.title));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.id, Is.EqualTo(expectedStory.id));
+                Assert.That(result.title, Is.EqualTo(expectedStory.title));
+            });
         }
 
         [Test]

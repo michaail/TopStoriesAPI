@@ -7,22 +7,16 @@ namespace TopStories.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class StoriesController : ControllerBase
+public class StoriesController(ILogger<StoriesController> logger, ITopStoriesService topStoriesService) : ControllerBase
 {
-    private readonly ILogger<StoriesController> _logger;
-    private readonly ITopStoriesService _topStoriesService;
-
-    public StoriesController(ILogger<StoriesController> logger, ITopStoriesService topStoriesService)
-    {
-        _logger = logger;
-        _topStoriesService = topStoriesService;
-    }
+    private readonly ILogger<StoriesController> _logger = logger;
+    private readonly ITopStoriesService _topStoriesService = topStoriesService;
 
     [HttpGet(Name = "TopStories")]
     [Produces(typeof(IEnumerable<Story>))]
     public async Task<IActionResult> Get([Range(0, 200)]int numberOfStories)
     {
-        _logger.LogInformation($"[StoriesController] - Received request for: {numberOfStories} most recent stories");
+        _logger.LogInformation("Received request for: {numberOfStories} most recent stories", numberOfStories);
         DateTime start = DateTime.Now;
         try
         {
@@ -37,7 +31,8 @@ public class StoriesController : ControllerBase
 
             var result = await Task.WhenAll(tasks);
             var duration = TimeSpan.FromTicks(DateTime.Now.Ticks - start.Ticks);
-            _logger.LogInformation($"[StoriesController] - Returned {result.Count()} in {(duration.Milliseconds == 0 ? $"{duration.TotalMicroseconds}us" : $"{duration.Milliseconds}ms")}");
+            var logMessage = $"Returned {result.Length} in {(duration.Milliseconds == 0 ? $"{duration.TotalMicroseconds}us" : $"{duration.Milliseconds}ms")}";
+            _logger.LogInformation(message: logMessage);
             return Ok(result);
         }
         catch (Exception ex)
