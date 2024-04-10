@@ -13,8 +13,8 @@ public class HackerNewsTopStoriesService(
     private readonly TimeSpan identifiersExpirationSpan = TimeSpan.FromMinutes(Constants.IdentifiersCacheExpirationInMinutes);
     private readonly TimeSpan storyExpirationSpan = TimeSpan.FromMinutes(Constants.StoryCacheExpirationInMinutes);
 
-    private readonly ICacheService _cacheService = cacheService;
-    private readonly IApiService _apiService = apiService;
+    private readonly ICacheService _cacheService = cacheService ?? throw new ArgumentNullException(nameof(_cacheService));
+    private readonly IApiService _apiService = apiService ?? throw new ArgumentNullException(nameof(_apiService));
 
     /// <summary>
     /// Cached service for Best stories identifiers using LazyCache

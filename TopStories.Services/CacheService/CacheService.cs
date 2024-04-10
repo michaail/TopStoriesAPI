@@ -5,8 +5,8 @@ namespace TopStories.Services.CacheService;
 
 public class CacheService(ILogger<CacheService> logger, IAppCache cache) : ICacheService
 {
-    private readonly ILogger<CacheService> _logger = logger;
-    private readonly IAppCache _cache = cache;
+    private readonly ILogger<CacheService> _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
+    private readonly IAppCache _cache = cache ?? throw new ArgumentNullException(nameof(_cache));
 
     /// <summary>
     /// Get data from cache using key, if data not exists in cache run valueFactory and add value to cache using key

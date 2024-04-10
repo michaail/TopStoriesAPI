@@ -9,8 +9,8 @@ namespace TopStories.API.Controllers;
 [Route("[controller]")]
 public class StoriesController(ILogger<StoriesController> logger, ITopStoriesService topStoriesService) : ControllerBase
 {
-    private readonly ILogger<StoriesController> _logger = logger;
-    private readonly ITopStoriesService _topStoriesService = topStoriesService;
+    private readonly ILogger<StoriesController> _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
+    private readonly ITopStoriesService _topStoriesService = topStoriesService ?? throw new ArgumentNullException(nameof(_topStoriesService));
 
     [HttpGet(Name = "TopStories")]
     [Produces(typeof(IEnumerable<Story>))]
