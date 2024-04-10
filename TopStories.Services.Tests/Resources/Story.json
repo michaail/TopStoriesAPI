@@ -38,7 +38,7 @@
   ],
   "score": 865,
   "time": 1712608729,
-  "title": "Llm.c – LLM training in simple, pure C/CUDA",
+  "title": "LLM training in simple, pure C/CUDA",
   "type": "story",
   "url": "https://github.com/karpathy/llm.c"
 }

@@ -33,7 +33,7 @@ namespace TopStories.Services.Tests
                 commentCount = 141,
                 score = 865,
                 time = 1712608729,
-                title = "Llm.c – LLM training in simple, pure C/CUDA",
+                title = "LLM training in simple, pure C/CUDA",
                 url = "https://github.com/karpathy/llm.c",
             };
 

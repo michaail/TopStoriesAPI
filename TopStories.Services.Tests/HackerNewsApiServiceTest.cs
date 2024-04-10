@@ -31,7 +31,7 @@ namespace TopStories.Tests
 
             // Arrange
             var storyId = 39973467;
-            var title = "Llm.c – LLM training in simple, pure C/CUDA";
+            var title = "LLM training in simple, pure C/CUDA";
             var json = TestDataProvider.GetTestDataString("Story");
             var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(json) };
             _httpMessageHandlerMock.Protected()
