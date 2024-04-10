@@ -3,6 +3,7 @@ using Moq;
 using Moq.Protected;
 using System.Net;
 using System.Text.Json;
+using TopStories.Common.Helpers;
 using TopStories.Common.Models;
 using TopStories.Services.HackerNewsService;
 
@@ -11,10 +12,9 @@ namespace TopStories.Tests
     [TestFixture]
     public class HackerNewsAPIServiceTests
     {
-        // private HackerNewsAPIService _hackerNewsApiService;
         private Mock<ILogger<HackerNewsAPIService>> _loggerMock;
         private Mock<HttpMessageHandler> _httpMessageHandlerMock;
-        // private HttpClient _httpClient;
+        private Mock<StoryConverter> _storyConverterMock;
 
         [SetUp]
         public void SetUp()
@@ -22,22 +22,21 @@ namespace TopStories.Tests
            
             _loggerMock = new Mock<ILogger<HackerNewsAPIService>>();
             _httpMessageHandlerMock = new Mock<HttpMessageHandler>();
+            _storyConverterMock = new Mock<StoryConverter>();
         
         }
 
         [TearDown]
         public void TearDown()
         {
-    
-    // Dispose HttpClient
- 
+            // Dispose HttpClient
         }
 
         [Test]
         public async Task GetStory_ValidId_ReturnsStory()
         {
                         var _httpClient = new HttpClient(_httpMessageHandlerMock.Object);
-            var _hackerNewsApiService = new HackerNewsAPIService(_loggerMock.Object, _httpClient);
+            var _hackerNewsApiService = new HackerNewsAPIService(_loggerMock.Object, _httpClient, _storyConverterMock.Object);
 
             // Arrange
             var storyId = 123;
@@ -60,7 +59,7 @@ namespace TopStories.Tests
         public async Task GetStory_InvalidId_ThrowsException()
         {
                         var _httpClient = new HttpClient(_httpMessageHandlerMock.Object);
-            var _hackerNewsApiService = new HackerNewsAPIService(_loggerMock.Object, _httpClient);
+            var _hackerNewsApiService = new HackerNewsAPIService(_loggerMock.Object, _httpClient, _storyConverterMock.Object);
 
             // Arrange
             var storyId = -1;
@@ -77,7 +76,7 @@ namespace TopStories.Tests
         {
                                     var _httpClient = new HttpClient(_httpMessageHandlerMock.Object);
 
-                        var _hackerNewsApiService = new HackerNewsAPIService(_loggerMock.Object, _httpClient);
+                        var _hackerNewsApiService = new HackerNewsAPIService(_loggerMock.Object, _httpClient, _storyConverterMock.Object);
 
             // Arrange
             var expectedIds = new List<int> { 1, 2, 3 };
@@ -98,7 +97,7 @@ namespace TopStories.Tests
         public async Task GetTopStoriesIds_FailedRequest_ThrowsException()
         {
                         var _httpClient = new HttpClient(_httpMessageHandlerMock.Object);
-            var _hackerNewsApiService = new HackerNewsAPIService(_loggerMock.Object, _httpClient);
+            var _hackerNewsApiService = new HackerNewsAPIService(_loggerMock.Object, _httpClient, _storyConverterMock.Object);
 
             // Arrange
             _httpMessageHandlerMock.Protected()

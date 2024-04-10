@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using TopStories.Common.Models;
 using TopStories.Services.TopStoriesService;
 
@@ -19,7 +20,7 @@ public class StoriesController : ControllerBase
 
     [HttpGet(Name = "TopStories")]
     [Produces(typeof(IEnumerable<Story>))]
-    public async Task<IActionResult> Get(int numberOfStories)
+    public async Task<IActionResult> Get([Range(0, 200)]int numberOfStories)
     {
         _logger.LogInformation($"[StoriesController] - Received request for: {numberOfStories} most recent stories");
         DateTime start = DateTime.Now;
@@ -37,7 +38,7 @@ public class StoriesController : ControllerBase
             var result = await Task.WhenAll(tasks);
             var duration = TimeSpan.FromTicks(DateTime.Now.Ticks - start.Ticks);
             _logger.LogInformation($"[StoriesController] - Returned {result.Count()} in {(duration.Milliseconds == 0 ? $"{duration.TotalMicroseconds}us" : $"{duration.Milliseconds}ms")}");
-            return Ok(await Task.WhenAll<Story>(tasks));
+            return Ok(result);
         }
         catch (Exception ex)
         {

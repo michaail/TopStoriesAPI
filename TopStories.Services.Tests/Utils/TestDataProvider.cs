@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 
 namespace TopStories.Services.Tests.Utils
@@ -19,6 +13,14 @@ namespace TopStories.Services.Tests.Utils
             {
                 string data = r.ReadToEnd();
                 return JsonSerializer.Deserialize<T>(data)!;
+            }
+        }
+
+        internal static string GetTestDataString(string testDataFile) 
+        {
+            using (StreamReader r = new($"{pathPrefix}/{testDataFile}.json"))
+            {
+                return r.ReadToEnd();
             }
         }
     }

@@ -21,11 +21,19 @@ public class HackerNewsTopStoriesService : ITopStoriesService
         _apiService = apiService;
     }
 
+    /// <summary>
+    /// Cached service for Best stories identifiers using LazyCache
+    /// </summary>
+    /// <returns>Cached collection of 200 identifiers for best stories</returns>
     public async Task<IEnumerable<int>> GetTopIdentifiers()
     {
         return await _cacheService.GetOrSet("BestStoriesIdentifiers", async () => await _apiService.GetTopStoriesIds(), identifiersExpirationSpan);
     }
 
+    /// <summary>
+    /// Cached service for single story using LazyCache
+    /// </summary>
+    /// <returns>Cached story in a ready format</returns>
     public async Task<Story> GetStory(int id)
     {
         return await _cacheService.GetOrSet($"{id}", async () => await _apiService.GetStory(id), storyExpirationSpan);
