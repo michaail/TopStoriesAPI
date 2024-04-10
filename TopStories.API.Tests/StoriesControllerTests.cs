@@ -40,11 +40,11 @@ namespace TopStories.API.Controllers.Tests
 
             // Assert
             Assert.NotNull(result);
-            Assert.AreEqual(StatusCodes.Status200OK, result.StatusCode);
+            Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status200OK));
             Assert.IsInstanceOf<IEnumerable<Story>>(result.Value);
             var returnedStories = result.Value as IEnumerable<Story>;
             Assert.IsNotNull(returnedStories);
-            Assert.AreEqual(numberOfStories, returnedStories.Count());
+            Assert.That(returnedStories.Count(), Is.EqualTo(numberOfStories));
             CollectionAssert.AreEqual(stories, returnedStories);
         }
 
@@ -60,7 +60,7 @@ namespace TopStories.API.Controllers.Tests
 
             // Assert
             Assert.NotNull(result);
-            Assert.AreEqual(StatusCodes.Status500InternalServerError, result.StatusCode);
+            Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status500InternalServerError));
         }
     }
 }

@@ -32,7 +32,7 @@ namespace TopStories.Services.TopStoriesService.Tests
             var result = await _topStoriesService.GetTopIdentifiers();
 
             // Assert
-            Assert.AreEqual(expectedIdentifiers, result);
+            Assert.That(result, Is.EqualTo(expectedIdentifiers));
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace TopStories.Services.TopStoriesService.Tests
             var result = await _topStoriesService.GetTopIdentifiers().ConfigureAwait(false);
 
             // Assert
-            Assert.AreEqual(expectedIdentifiers, result);
+            Assert.That(result, Is.EqualTo(expectedIdentifiers));
             _apiServiceMock.Verify(x => x.GetTopStoriesIds(), Times.Once);
         }
 
@@ -64,7 +64,7 @@ namespace TopStories.Services.TopStoriesService.Tests
             var result = await _topStoriesService.GetStory(123);
 
             // Assert
-            Assert.AreEqual(expectedStory, result);
+            Assert.That(result, Is.EqualTo(expectedStory));
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace TopStories.Services.TopStoriesService.Tests
             var result = await _topStoriesService.GetStory(123);
 
             // Assert
-            Assert.AreEqual(expectedStory, result);
+            Assert.That(result, Is.EqualTo(expectedStory));
             _apiServiceMock.Verify(x => x.GetStory(123), Times.Once);
         }
     }
