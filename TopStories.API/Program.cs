@@ -11,12 +11,6 @@ logger.Info("TopStories - Start");
 builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
 builder.Host.UseNLog();
 
-// Add services to the container.
-builder.Services.AddLogging(bldr =>
-{
-    bldr.AddConfiguration(builder.Configuration.GetSection("Logging"));
-    bldr.AddSimpleConsole();
-});
 builder.Services.AddSingleton<StoryConverter>();
 
 builder.Services.AddControllers();
